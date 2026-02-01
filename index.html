@@ -7,19 +7,14 @@
       <!-- Google Font -->
       <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400;700&display=swap" rel="stylesheet">
       <style> 
-         /* Phone (small screens) */
-@media only screen and (max-width: 600px) {
+         
+         /* TV / Extra large screens (smallest text) */
+@media only screen and (min-width: 1921px) {
   body {
-    background: lightblue;
-    font-size: 14px;
-  }
-}
-
-/* Tablet */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
-  body {
-    background: lightgreen;
+    background: lightcoral;
     font-size: 16px;
+    max-width: 1600px;
+    margin: 0 auto;
   }
 }
 
@@ -29,17 +24,23 @@
     background: lightyellow;
     font-size: 18px;
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
   }
 }
 
-/* TV / Extra large screens */
-@media only screen and (min-width: 1921px) {
+/* Tablet (larger text) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
   body {
-    background: lightcoral;
+    background: lightgreen;
+    font-size: 20px;
+  }
+}
+
+/* Phone / Small screens (largest text) */
+@media only screen and (max-width: 600px) {
+  body {
+    background: lightblue;
     font-size: 22px;
-    max-width: 1600px;
-    margin: auto;
   }
 } /*stg format lain*/
          
@@ -378,5 +379,6 @@
       </footer>
    </body>
 </html>
+
 
 
