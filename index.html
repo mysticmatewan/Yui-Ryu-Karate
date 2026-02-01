@@ -7,171 +7,211 @@
       <!-- Google Font -->
       <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400;700&display=swap" rel="stylesheet">
       <style> 
-         
-         /* TV / Extra large screens (smallest text) */
-@media only screen and (min-width: 1921px) {
-  body {
-    background: lightcoral;
-    font-size: 50px; /* 16px * 4 */
-    max-width: 1600px;
-    margin: 0 auto;
-  }
+       /* Responsive typography and layout
+   - Uses fluid root font-size with clamp() so all text scales smoothly
+   - All typographic elements use rem units so they respond to root size
+   - Includes explicit rules for blockquote, sections, header, aside, and an embedded folder iframe
+   - Keeps layout responsive with a simple grid that collapses on small screens
+*/
+
+/* Fluid root font-size: min 18px, preferred scales with viewport, max 82px */
+html {
+  box-sizing: border-box;
+  /* Adjust these values if you want a different min/max scale */
+  font-size: clamp(18px, 1.6vw + 0.6rem, 82px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* PC / Desktop */
-@media only screen and (min-width: 1025px) and (max-width: 1920px) {
-  body {
-    background: lightyellow;
-    font-size: 60px; /* 18px * 4 */
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Color variables and base styles */
+:root{
+  --bg: #f6fbff;
+  --card: #ffffff;
+  --accent: #0b66a3;
+  --muted: #6b7b86;
+  --quote-bg: #eef8ff;
+  --border: rgba(11,102,163,0.08);
+  --max-content-width: 1200px;
 }
 
-/* Tablet (larger text) */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
-  body {
-    background: lightgreen;
-    font-size: 70px; /* 20px * 4 */
-  }
+body{
+  margin: 0;
+  font-family: "Josefin Slab", serif;
+  background: linear-gradient(180deg,#f8fcff 0%,var(--bg) 100%);
+  color: #0b2b3a;
+  line-height: 1.45;
+  padding: 1.75rem; /* uses rem from html font-size */
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Phone / Small screens (largest text) */
-@media only screen and (max-width: 600px) {
-  body {
-    background: lightblue;
-    font-size: 82px; /* 22px * 4 */
+/* Layout */
+.wrap{
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 28rem; /* aside column uses rem-based width */
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* Header */
+header{
+  grid-column: 1 / -1;
+  background: var(--card);
+  border-radius: 0.75rem;
+  padding: 1.1rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 0.5rem 1.5rem rgba(11,34,46,0.04);
+}
+header h1{
+  margin: 0;
+  font-size: 1.05rem; /* 1.05 * root */
+  line-height: 1.05;
+}
+header p{
+  margin: 0.35rem 0 0 0;
+  color: var(--muted);
+  font-size: 0.45rem;
+}
+
+/* Main content card */
+main{
+  background: var(--card);
+  border-radius: 0.75rem;
+  padding: 1.1rem;
+  border: 1px solid var(--border);
+}
+
+/* Aside */
+aside{
+  background: var(--card);
+  border-radius: 0.75rem;
+  padding: 0.9rem;
+  border: 1px solid var(--border);
+  height: fit-content;
+}
+
+/* Headings and paragraphs scale with root font-size */
+h2{
+  margin: 0 0 0.5rem 0;
+  font-size: 0.65rem;
+  color: var(--accent);
+}
+p{
+  margin: 0 0 0.75rem 0;
+  color: #12343f;
+  font-size: 0.45rem;
+}
+
+/* Blockquote: uses rem so it scales with root */
+blockquote{
+  background: var(--quote-bg);
+  border-left: 0.35rem solid var(--accent);
+  padding: 0.9rem 1rem;
+  margin: 0.6rem 0 1rem 0;
+  border-radius: 0.5rem;
+  color: #083047;
+  font-style: normal;
+  font-size: 0.6rem;
+  box-shadow: 0 0.35rem 1rem rgba(11,34,46,0.03);
+}
+blockquote footer{
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.45rem;
+}
+
+/* Section spacing */
+.section{
+  margin-bottom: 0.75rem;
+}
+
+/* Divider */
+.divider{
+  height: 0.06rem;
+  background: linear-gradient(90deg, transparent, #cfeaf8, transparent);
+  margin: 0.75rem 0;
+  border-radius: 0.125rem;
+}
+
+/* Note text */
+.note{
+  font-size: 0.42rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* Card component (e.g., for embedded folder preview) */
+.card {
+  background: #fff;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.08);
+  max-width: 25rem;
+  text-align: center;
+  padding: 1.25rem;
+  margin: 0 auto;
+}
+.card img {
+  width: 9.5rem;
+  height: 9.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 0.2rem solid #0077cc;
+  margin-bottom: 0.9rem;
+}
+.card h2 { margin: 0.5rem 0; color: #333; font-size: 0.55rem; }
+.card p { color: #555; font-size: 0.42rem; margin-bottom: 0.9rem; }
+.card a {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  background: #0077cc;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: background 0.2s ease;
+  font-size: 0.45rem;
+}
+.card a:hover { background: #005fa3; }
+
+/* Embedded Drive folder (responsive iframe wrapper) */
+.embed {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fafcff;
+}
+.embed iframe {
+  width: 100%;
+  height: 36rem; /* height scales with root font-size */
+  border: 0;
+  display: block;
+}
+
+/* Small screens: collapse layout and increase spacing */
+@media (max-width: 980px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
   }
-} /*stg format lain*/
-         
-         :root{
-         --bg:#f6fbff;
-         --card:#ffffff;
-         --accent:#0b66a3;
-         --muted:#6b7b86;
-         --quote-bg:#eef8ff;
-         --border:rgba(11,102,163,0.08);
-         }
-         *{box-sizing:border-box}
-         body{
-         margin:0;
-         font-family:"Josefin Slab", serif;
-         background:linear-gradient(180deg,#f8fcff 0%,var(--bg) 100%);
-         color:#0b2b3a;
-         -webkit-font-smoothing:antialiased;
-         -moz-osx-font-smoothing:grayscale;
-         line-height:1.65;
-         padding:28px;
-         font-size: 50px;
-         }
-         .wrap{
-         max-width:980px;
-         margin:0 auto;
-         display:grid;
-         grid-template-columns:1fr 320px;
-         gap:20px;
-         align-items:start;
-         }
-         header{
-         grid-column:1/-1;
-         font-size: 60px; 
-         background:var(--card);
-         border-radius:12px;
-         padding:18px 20px;
-         border:1px solid var(--border);
-         box-shadow:0 8px 24px rgba(11,34,46,0.04);
-         }
-         header h1{margin:0;font-size:1.5rem}
-         header p{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
-         main{
-         background:var(--card);
-         border-radius:12px;
-         padding:18px;
-         border:1px solid var(--border);
-         }
-         aside{
-         background:var(--card);
-         border-radius:12px;
-         padding:16px;
-         border:1px solid var(--border);
-         height:fit-content;
-         }
-         h2{margin:0 0 8px 0;font-size:1.05rem;color:var(--accent)}
-         p{margin:0 0 12px 0;color:#12343f}
-         /* Blockquote styling (clean, readable) */
-         blockquote{
-         background:var(--quote-bg);
-         border-left:6px solid var(--accent);
-         padding:14px 16px;
-         margin:10px 0 14px 0;
-         border-radius:8px;
-         color:#083047;
-         font-style:normal;
-         font-size: 60px; 
-         box-shadow:0 6px 18px rgba(11,34,46,0.03);
-         }
-         blockquote footer{
-         display:block;
-         margin-top:8px;
-         color:var(--muted);
-         font-size:60px;
-         }
-         .section{
-         margin-bottom:14px;
-         }
-         .divider{
-         height:1px;
-         background:linear-gradient(90deg,transparent,#cfeaf8,transparent);
-         margin:14px 0;
-         border-radius:2px;
-         }
-         .note{
-         font-size:0.92rem;
-         color:var(--muted);
-         margin-top:8px;
-         }
-         /* Simple responsive */
-         @media (max-width:980px){
-         .wrap{grid-template-columns:1fr;padding:0 16px}
-         aside{order:2}
-         } .card {
-         background: #fff;
-         border-radius: 10px;
-         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-         max-width: 400px;
-         text-align: center;
-         padding: 20px;
-         margin: auto;
-         }
-         .card img {
-         width: 150px;
-         height: 150px;
-         object-fit: cover;
-         border-radius: 50%;
-         border: 3px solid #0077cc;
-         margin-bottom: 15px;
-         }
-         .card h2 {
-         margin: 10px 0;
-         color: #333;
-         }
-         .card p {
-         color: #555;
-         font-size: 14px;
-         margin-bottom: 20px;
-         }
-         .card a {
-         display: inline-block;
-         padding: 10px 20px;
-         background: #0077cc;
-         color: #fff;
-         text-decoration: none;
-         border-radius: 5px;
-         transition: background 0.3s ease;
-         }
-         .card a:hover {
-         background: #005fa3;
-         }
+  aside { order: 2; }
+  .embed iframe { height: 28rem; }
+}
+
+/* Optional: extra-large screens tweak */
+@media (min-width: 1921px) {
+  :root { --max-content-width: 1600px; }
+  .embed iframe { height: 48rem; }
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
       </style>
    </head>
    <body>
@@ -382,6 +422,7 @@
       </footer>
    </body>
 </html>
+
 
 
 
