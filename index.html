@@ -156,7 +156,7 @@
          /* Embedded Drive folder */
          /* Embedded Drive folder (responsive iframe wrapper) */
          .embed {
-         width: 100vh;
+         width: 500vh;
          max-width: 100%;
          border-radius: 0.5rem;
          overflow: hidden;
@@ -164,8 +164,8 @@
          background: #fafcff;
          }
          .embed iframe {
-         width: 100vh;
-         height: 48rem; /* increased from 36rem */
+         width: 500vh;
+         height: 8rem; /* increased from 36rem */
          border: 0;
          display: block;
          }
@@ -176,12 +176,12 @@
          padding: 0 1rem;
          }
          aside { order: 2; }
-         .embed iframe { height: 40rem; } /* bigger than before */
+         .embed iframe { height: 4rem; } /* bigger than before */
          }
          /* Extra-large screens tweak */
          @media (min-width: 1921px) {
          :root { --max-content-width: 1600px; }
-         .embed iframe { height: 60rem; } /* extra large for wide monitors */
+         .embed iframe { height: 6rem; } /* extra large for wide monitors */
          }
          /* Accessibility */
          @media (prefers-reduced-motion: reduce) {
@@ -398,4 +398,5 @@
       </footer>
    </body>
 </html>
+
 
