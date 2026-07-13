@@ -22,7 +22,7 @@
          --accent: #0b66a3;
          --muted: #6b7b86;
          --quote-bg: #eef8ff;
-         --border: rgba(11,102,163,0.08);
+         --border: rgb   a(11,102,163,0.08);
          --max-content-width: 1200px;
          }
          body{
@@ -153,20 +153,19 @@
          font-size: 1rem;
          }
          .card a:hover { background: #005fa3; }
-         /* Embedded Drive folder */
          /* Embedded Drive folder (responsive iframe wrapper) */
          .embed {
-         width: 500vh;
-         max-width: 500%;
+         width: 100%;
+         max-width: 100%;
          border-radius: 0.5rem;
          overflow: hidden;
          border: 1px solid var(--border);
          background: #fafcff;
          }
          .embed iframe {
-         width: 500vh;
-         height: 8rem; /* increased from 36rem */
-         border: 0.5;
+         width: 100%;
+         height: 36rem; /* default height for desktop */
+         border: 0;
          display: block;
          }
          /* Small screens: collapse layout and increase iframe height */
@@ -176,16 +175,12 @@
          padding: 0 1rem;
          }
          aside { order: 2; }
-         .embed iframe { height: 4rem; } /* bigger than before */
+         .embed iframe { height: 24rem; } /* taller for mobile */
          }
          /* Extra-large screens tweak */
          @media (min-width: 1921px) {
          :root { --max-content-width: 1600px; }
-         .embed iframe { height: 6rem; } /* extra large for wide monitors */
-         }
-         /* Accessibility */
-         @media (prefers-reduced-motion: reduce) {
-         * { transition: none !important; animation: none !important; }
+         .embed iframe { height: 48rem; } /* extra large for wide monitors */
          }
       </style>
    </head>
@@ -398,7 +393,3 @@
       </footer>
    </body>
 </html>
-
-
-
-
